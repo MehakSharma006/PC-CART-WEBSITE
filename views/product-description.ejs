@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>About</title>
+    <%- include('header-files-new') %>
+  </head>
+  <body onload="getProductDescription()">
+    <div class="main">
+        <%- include('guest_navbar') %> 
+        <%- include('bread-crumb') %> 
+
+        <section class="ptb-95 align-center">
+            <div class="container">
+                <div class="product-slider">
+                    <div class="row m-0" id="p-description">
+                        <!-- <div class="product-main position-r"> -->
+                            
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('footer') %> 
+        <%- include('footer_scripts') %> 
+    </div>
+
+<script>
+      
+    //   const getProductDescription = () => {
+    //     let id= localStorage.getItem('p_ID');
+    //     let http = new XMLHttpRequest();
+    //     http.onreadystatechange = function () {
+    //         if (this.readyState === 4 && this.status === 200) {
+    //             console.log(JSON.parse(this.response));
+    //             // let response = JSON.parse(this.response);
+    //         }
+    //     http.open("POST", `/get-products-list?id=${id}`, true);
+    //     http.send();
+
+    // }
+</script>
+
+  </body>
+</html>

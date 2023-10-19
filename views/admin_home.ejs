@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Home</title>
+    <%- include('header-files-new') %>
+</head>
+<body class="hidden-bar-wrapper">
+
+<div class="page-wrapper">
+    <%- include('navbar') %>
+    <%- include('bread-crumb') %>
+
+    <div class="container py-5 my-5 text-center alert-info margin-top-15" style="background-color: pink;">
+        <h2 style="text-align: center;background-color: pink;">Welcome <span class="text-info"><%= name %></span></h2>
+
+             <h3 style="color:rgb(211, 49, 76)">This is your admin home , where you can: </h3>
+             <ul style="color:rgb(227, 12, 48);font-family:Georgia, 'Times New Roman', Times, serif;">
+                <li>Manage Categories (Add, View, Edit, Delete):</li><br>
+                <li>Manage Sub-Categories (Add, View, Edit, Delete):</li><br>
+                <li>Manage Products </li><br>
+                <li>Manage Product gallery</li><br>
+                <li>View Order Details (Confirmation Email)<br>
+                    i.Order Received<br>
+                    ii.Order Packed<br>
+                    iii.Order Shipped<br> 
+                    </li>
+             </ul>
+             
+    </div>
+
+    <div class="margin-top-15"></div>
+
+    <%- include('footer') %>
+</div>
+
+<%- include("footer_scripts") %>
+
+</body>
+</html>

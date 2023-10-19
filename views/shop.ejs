@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Shop | PCart</title>
+    <%- include('header-files-new') %>
+</head>
+<body class="homepage" onload="fetchCategory()">
+<div class="main">
+    <%- include('guest_navbar') %>
+    <%- include('bread-crumb') %>
+
+    <!--  New Products Block Start  -->
+    <section class="ptb-95 align-center">
+        <div class="container">
+            <div class="product-slider">
+
+<div class="row">
+    <div class="col-lg-3 col-sm-0"></div>
+    <div class="col-lg-6 mb-40">
+        <label for="sub-cat">Select Category</label>
+        <select onchange="getFilteredProduct(this.value)" name="sub-cat" id="sub-cat" class="form-control">
+            <option value="">Please Select Category</option>
+        </select>
+    </div>
+    <div class="col-lg-3 col-sm-0"></div>
+</div>
+
+                <div class="row m-0">
+                    <div class="product-main position-r">
+                        <div class="four-products" id="products-div">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  New Products Block End  -->
+
+    <!--  Parallax Block Start  -->
+    <section class="ptb-95 parallax-block" data-stellar-background-ratio="0.5">
+        <div class="container service-feature-block">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div class="ser-feature-block">
+                        <!-- <div class="feature-box feature1">
+                            <div class="ser-title">Free Shipping</div>
+                            <div class="ser-subtitle">Shipping in World for orders over $99</div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="ser-feature-block">
+                        <!-- <div class="feature-box feature2">
+                            <div class="ser-title">Special Gift</div>
+                            <div class="ser-subtitle">Give the perfect gift to your loved ones</div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="ser-feature-block">
+                        <!-- <div class="feature-box feature3">
+                            <div class="ser-title">Money Back</div>
+                            <div class="ser-subtitle">Not receiving an item applied to</div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  Parallax Block End  -->
+
+    <!-- Products  block Start  -->
+    <section class="pb-95 blog" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="heading-part mb-40">
+                        <h2 class="main_title">Accessories</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row home-blog-item m-0">
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <!-- <img src="assets/images/blog_img1.jpg" alt="Tizzy"> -->
+                                <img src="images/lenovo_board.jpg" style="width:70%;height:80%;"  alt="lenovo_keyboard">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>Lenovo  keyboard</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        
+                                        <a style="cursor: default" href="#">
+                                            Brand- Lenovo <br>
+                                            keyboard description- USB <br>
+                                            Item model no.- Lxh-eKb-10ya <br>
+                                            Price-<br>
+                                        
+                                            <p style="color:red;background-color: black;">(no discounts)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            <!-- <li class="post-date"><a style="cursor: default" href="#">11/3/2017</a></li> -->
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/intel_mb.jpg"  style="width:50%;height:60%;" alt="motherboard">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>Intel Core i7+ MSI-Z690-Apro DDR5</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                            Brand- Inland <br>
+                                            Compatible processors- Intel Celeron, intel pentium <br>
+                                            Memory clock speed- 3.6 GHz<br>
+                                            Price- <br>
+                                        
+                                            <p style="color:red;background-color: black;">(Discount-20%)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            <!-- <li class="post-date"><a style="cursor: default" href="#">11/3/2017</a></li> -->
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/adapter.jpg"  style="width:40%;height:40%;" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3></h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                            Brand- Wavenex <br>
+                                            Hardware Interface- USB 3.0<br>
+                                            Compatible devices- Desktop<br>
+                                            Color- black <br>
+                                            Os- windows <br>
+                                            Price- Rs. 1699<br>
+                                        
+                                            <p style="color:red;background-color: black;">( Discount-32%)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            <li class="post-date"><a style="cursor: default" href="#">11/3/2017</a></li>
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/hdd.jpg" style="width:57%;height:50%;" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>Black Sata HDD</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                            Brand- Seagate<br>
+                                            Storage capacity- 1Tb<br>
+                                            Memory size- 3.5 inch<br>
+                                            Spindle speed-7200 rpm <br>
+                                            Price- Rs. 2,350<br>
+                                        
+                                            <p style="color:red;background-color: black;">(no discount)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                           
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="pb-95 blog mt-3" >
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="heading-part mb-40">
+                        <h2 class="main_title">More</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row home-blog-item m-0">
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/mouse.jpg"  style="width:45%;height:40%;" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>Wireless mice</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                            Brand- Quantum <br>
+                                            Color-black <br>
+                                            Connector type-Wi-Fi<br>
+                                            Price- <br>
+                                        
+                                            <p style="color:red;background-color: black;">(no discount)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            <li class="post-date"><a style="cursor: default" href="#">11/3/2017</a></li>
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/webcam.jpg"  style="width:50%;height:60%;" alt="motherboard">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>Logitech HD Webcam</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                            Compatible Software- Logitech Vid HD<br>
+                                            Focus type- Fixed<br>
+                                            Connectivity- USB<br>
+                                            Model Id- HD Webcam C270
+                                            Price-Rs.1,699 <br>
+                                        <br>
+                                            <p style="color:red;background-color: black;">(Discount-30%)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            <!-- <li class="post-date"><a style="cursor: default" href="#">11/3/2017</a></li> -->
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/battery.jpg"  style="width:45%;height:40%;" alt="">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>LapLife Laptop battery</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                            Brand- Laplife <br>
+                                            No. of batteries-  1 AA batteries required<br>
+                                            Battery weight- 150 grams<br>
+                                            Voltage- 7.7 Volts <br>
+                                            Reusability- Rechargeable
+                                            <br>
+                                            <p style="color:red;background-color: black;">(no discount)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="blog-item">
+                        <div class="blog-media">
+                            <a style="cursor: default" href="#">
+                                <img src="images/optical drive.jpg" style="width:45%;height:50%;" alt="Tizzy">
+                            </a>
+                        </div>
+                        <div class="blog-detail">
+                            <div class="blog-detail-inner">
+                                <div class="blog-contant">
+                                    <a style="cursor: default" href="#">
+                                        <h3>Optical drive</h3>
+                                    </a>
+                                    <div class="blog-desc">
+                                        <a style="cursor: default" href="#">
+                                         Item: USB External CD/DVD player<br>
+                                         
+                                         Voltage: 5V <br>
+                                         Read speed: 24K <br>
+                                         Interface: USB 2.0 <br>
+                                         <p style="color:red;background-color: black;">(no discount)</p>
+                                        </a>
+                                    </div>
+                                    <div class="post-info">
+                                        <ul>
+                                            
+                                            <li class="post-comment"><a style="cursor: default" href="#">(5)
+                                                    comments</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Brand logo block Start  -->
+<section class="pb-50 brand-main">
+    <div class="container">
+        <div class="row brand">
+            <div class="col-md-12">
+                <div id="brand-logo" class="owl-carousel align_center">
+                    <div class="item"><a href="#"><img src="assets/images/brand1.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand2.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand3.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand4.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand5.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand6.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand7.jpg" alt="#"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Brand logo block End  -->
+
+<%- include('footer') %>
+
+<%- include('footer_scripts') %>
+
+<script>
+    $(document).ready(() => {
+        getCartProducts('products');
+    });
+</script>
+
+</body>
+</html>

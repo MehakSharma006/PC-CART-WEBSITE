@@ -1,0 +1,98 @@
+<!-- HEADER START -->
+<header class="navbar navbar-custom " id="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="navbar-header">
+                        <a class="navbar-brand page-scroll" href="/users/">
+                            <img alt="Pcart" src="/images/logo3.png">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6 right-side">
+                    <div class="right-side float-left-xs header-right-link">
+                        <ul>
+                            <li class="main-search"></li>
+
+                            <li class="account-icon"></li>
+
+                            <li class="cart-icon">
+                                <a href="/shopping-cart">
+                                    <span>
+                                        <small class="cart-notification total-cart"></small>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button data-target=".navbar-collapse"
+                            data-toggle="collapse" class="navbar-toggle"
+                            type="button">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-6 col-sm-12 position-s left-side float-none-sm">
+                    <div class="align-center">
+                        <div id="menu" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="level"><a href="/users/" class="page-scroll">Home</a></li>
+
+                                <li class="level"><a href="/users/my-orders" class="page-scroll">My Orders</a></li>
+
+                                <li class="level">
+                                    <span class="opener plus"></span>
+                                    <a class="page-scroll">
+                                        Settings
+                                    </a>
+                                    <div class="megamenu mobile-sub-menu">
+                                        <div class="megamenu-inner-top">
+                                            <ul class="sub-menu-level1">
+                                                <li class="level2">
+                                                    <ul class="sub-menu-level2 ">
+                                                        <li class="level3">
+                                                            <a href="/users/change-password">Change Password</a>
+                                                        </li>
+                                                        <li class="level3" onclick="LogoutUser()">
+                                                            <button type="button" >
+                                                                Logout
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header_search_toggle mobile-view"></div>
+        </div>
+    </div>
+</header>
+<!-- HEADER END -->
+
+<script>
+    const LogoutUser = () => {
+        let http = new XMLHttpRequest();
+        http.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.response);
+                if (this.response === "success") {
+                    window.location.href = "/user-login";
+                    window.location.reload();
+                }
+            }
+        }
+        http.open("GET", "/users/user-logout", true);
+        http.send();
+    }
+</script>

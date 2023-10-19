@@ -1,0 +1,315 @@
+<script src="../bootstrap/js/bootstrap.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script> -->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+<script src="../assets/js/jquery-1.12.3.min.js"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+  integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+></script>
+
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery-ui.min.js"></script>
+<script src="../assets/js/fotorama.js"></script>
+<script src="../assets/js/jquery.magnific-popup.js"></script>
+<script src="../assets/js/owl.carousel.min.js"></script>
+<script src="../assets/js/jquery.stellar.js"></script>
+<script src="../assets/js/custom.js"></script>
+
+<script>
+  const contactUser = () => {
+    document.getElementById("contactForm").reset();
+    Swal.fire({
+      icon: "success",
+      title: "Form Submitted Successfully.",
+    });
+  };
+
+  const LogoutAdmin = () => {
+    // e.preventDefault();
+    if (confirm("Are you sure to Logout?")) {
+      var http = new XMLHttpRequest();
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          // console.log(this.response);
+          if (this.response == "success") {
+            window.location.href = "/admin-login";
+          }
+        }
+      };
+      http.open("GET", "/logout-admin", true);
+      http.send();
+    }
+  };
+
+  const goShoppingCart = () => {
+    window.location.href = "/shopping-cart";
+  };
+
+  $(document).ready(() => {
+    getCartCount();
+  });
+
+  const getCartProducts = (action) => {
+    // console.log(action);
+    let http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        // console.log(JSON.parse(this.response));
+        let response = JSON.parse(this.response);
+        let cards = ``;
+        response.forEach((value) => {
+          cards += `<div class="col-md-3 col-sm-4 col-xs-6 p-0">`;
+          cards += `<div class="product-item mb-16">`;
+
+          if (value.discount > 0) {
+            cards += `<div class="sale-label"><span>${value.discount}% OFF</span></div>`;
+          }
+
+          cards += `<div class="product-image">`;
+          cards += ` <a onclick='showDescription(event, ${value.id})' href="/product-description"><img src="${value.photo}" style="height: 200px" alt=""></a>`;
+          cards += `<div class="product-detail-inner">`;
+          cards += `<div class="detail-inner-left left-side">`;
+          cards += ` <ul>`;
+          cards += `<li class="pro-cart-icon">`;
+          cards +=
+            "<form><button onclick='AddToCart(" +
+            JSON.stringify(value) +
+            ')\' type="button" title="Add to Cart"></button></form>';
+          cards += `</li>`;
+          cards += `</ul>`;
+          cards += `</div>`;
+          cards += `</div>`;
+          cards += `</div>`;
+
+          cards += `<div class="product-item-details">`;
+          cards += `<div class="product-item-name">`;
+          cards += `<a onclick='showDescription(event, ${value.id})' href="/product-description">${value.product_name}</a>`;
+          cards += `</div>`;
+          cards += ` <div class="price-box">`;
+          cards += `<span class="price">&#x20b9;${Math.round(
+            value.price - (value.price * value.discount) / 100
+          )}</span>`;
+          cards += `<del class="price old-price">&#x20b9;${value.price}</del>`;
+          cards += `</div>`;
+          cards += `</div>`;
+
+          cards += `</div>`;
+          cards += `</div>`;
+        });
+        document.getElementById("products-div").innerHTML = cards;
+      }
+    };
+    http.open("GET", `/get-products-list?action=${action}`, true);
+    http.send();
+  };
+
+  const showDescription = (e, id) => {
+    e.preventDefault();
+    // console.log(id);
+    localStorage.setItem("p_ID", id);
+
+    setTimeout(() => {
+      window.location.href = "/product-description";
+    }, 500);
+  };
+
+  const getFilteredProduct = (id) => {
+    // console.log(id);
+
+    if (id === "") {
+      alert("Select Product");
+      let html = `<div class="col-md-12 col-sm-12 col-xs-12 p-0"><div class='alert alert-danger'>No Data Found.</div></div>`;
+      document.getElementById("products-div").innerHTML = html;
+    } else {
+      let http = new XMLHttpRequest();
+      http.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          //   console.log(JSON.parse(this.response));
+
+          let response = JSON.parse(this.response);
+
+          if (response.length === 0) {
+            let html = `<div class="col-md-12 col-sm-12 col-xs-12 p-0"><div class='alert alert-danger'>No Data Found.</div></div>`;
+            document.getElementById("products-div").innerHTML = html;
+          } else {
+            let cards = ``;
+            response.forEach((value) => {
+              cards += `<div class="col-md-3 col-sm-4 col-xs-6 p-0">`;
+              cards += `<div class="product-item mb-16">`;
+
+              if (value.discount > 0) {
+                cards += `<div class="sale-label"><span>${value.discount}% OFF</span></div>`;
+              }
+
+              cards += `<div class="product-image">`;
+              cards += ` <a onclick='showDescription(event, ${value.id})' href="/product-description"><img src="${value.photo}" style="height: 200px" alt=""></a>`;
+              cards += `<div class="product-detail-inner">`;
+              cards += `<div class="detail-inner-left left-side">`;
+              cards += ` <ul>`;
+              cards += `<li class="pro-cart-icon">`;
+              cards +=
+                "<form><button onclick='AddToCart(" +
+                JSON.stringify(value) +
+                ')\' type="button" title="Add to Cart"></button></form>';
+              cards += `</li>`;
+              cards += `</ul>`;
+              cards += `</div>`;
+              cards += `</div>`;
+              cards += `</div>`;
+
+              cards += `<div class="product-item-details">`;
+              cards += `<div class="product-item-name">`;
+              cards += `<a onclick='showDescription(event, ${value.id})' href="/product-description">${value.product_name}</a>`;
+              cards += `</div>`;
+              cards += ` <div class="price-box">`;
+              cards += `<span class="price">&#x20b9;${Math.round(
+                value.price - (value.price * value.discount) / 100
+              )}</span>`;
+              cards += `<del class="price old-price">&#x20b9;${value.price}</del>`;
+              cards += `</div>`;
+              cards += `</div>`;
+
+              cards += `</div>`;
+              cards += `</div>`;
+            });
+            document.getElementById("products-div").innerHTML = cards;
+          }
+        }
+      };
+      http.open("GET", `/fetch-filtered-product?id=${id}`, true);
+      http.send();
+    }
+  };
+
+  const fetchCategory = () => {
+    let http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        //    console.log(JSON.parse(this.response));
+        let Category = JSON.parse(this.response);
+
+        let html = `<option value="">Please Select Category</option>`;
+
+        Category.forEach((value) => {
+          html += `<option value="${value.subcategory_id}">${value.subcategory_name}</option>`;
+        });
+        document.getElementById("sub-cat").innerHTML = html;
+      }
+    };
+    http.open("GET", "/get-sub-categories", true);
+    http.send();
+  };
+
+  const getProductDescription = () => {
+    // console.log("*****");
+    let id = localStorage.getItem("p_ID");
+    // console.log(id);
+
+    if (id === null) {
+      window.location.href = "/shop";
+      return false;
+    }
+
+    let formData = new FormData();
+    formData.append("id", id);
+
+    let http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        // console.log(this.response);
+        // console.log(JSON.parse(this.response));
+        let response = JSON.parse(this.response);
+
+        let html = `<div class='col-lg-4'>`;
+        html += `<img src='http://localhost:3000/${response[0].photo}' height='200' alr='' />`;
+        html += `</div>`;
+
+        html += `<div class='col-lg-8'>`;
+        html += `<h3>${response[0].product_name}</h3><hr/>`;
+
+        if (response[0].discount > 0) {
+          let netPrice =
+            response[0].price -
+            (response[0].price * response[0].discount) / 100;
+          html += `<h5 style='margin-bottom: 30px'><del class='text-danger' style='margin-right: 10px'>&#x20b9;${response[0].price}</del> <span style='margin-right: 10px'>&#x20b9;${netPrice}</span> <span>&#x20b9;${response[0].discount}% OFF</span></h5>`;
+        } else {
+          html += `<p><span>&#x20b9;${response[0].price}</span></p>`;
+        }
+
+        html += `<p>${response[0].description}</p>`;
+        html += `</div>`;
+
+        document.getElementById("p-description").innerHTML = html;
+      }
+    };
+    http.open("POST", `/product-description`, true);
+    http.send(formData);
+  };
+
+  var AddToCart = (object) => {
+    // console.log(object);
+
+    var formData = new FormData();
+    formData.append("action", "add");
+    formData.append("productObject", JSON.stringify(object));
+
+    var http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        // console.log(this.response);
+        if (this.response == "success") {
+          Swal.fire({
+            icon: "success",
+            title: "Product Added In Cart",
+          });
+          getCartCount();
+        } else {
+          Swal.fire({
+            icon: "warning",
+            title: "Product Already In Cart",
+          });
+        }
+      }
+    };
+    http.open("POST", "/add-to-cart", true);
+    http.send(formData);
+  };
+
+  const getCartCount = () => {
+    let formData = new FormData();
+    formData.append("action", "cartCount");
+
+    let http = new XMLHttpRequest();
+    http.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        // console.log("Cart Count - ", this.response);
+        $(".total-cart").text(this.response);
+      }
+    };
+    http.open("POST", "/add-to-cart", true);
+    http.send(formData);
+  };
+
+  const Subscribe = () => {
+    if (document.getElementById("subscribe").value === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Please enter email address",
+      });
+    } else {
+      document.getElementById("subscribe").value = "";
+      Swal.fire({
+        icon: "success",
+        title: "Subscribed",
+      });
+    }
+  };
+</script>

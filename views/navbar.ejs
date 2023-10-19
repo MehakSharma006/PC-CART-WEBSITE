@@ -1,0 +1,171 @@
+<!-- HEADER START -->
+<header class="navbar navbar-custom " id="header">
+    <div class="container">
+        <div class="header-inner">
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="navbar-header">
+                        <a class="navbar-brand page-scroll" href="/">
+                            <img alt="Tizzy" src="/images/logo3.png">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6 right-side">
+                    <div class="right-side float-left-xs header-right-link">
+                        <ul>
+                            <li class="main-search">
+                                <!--                                <div class="header_search_toggle desktop-view">-->
+                                <!--                                    <form>-->
+                                <!--                                        <div class="search-box">-->
+                                <!--                                            <input class="input-text" type="text"-->
+                                <!--                                                   placeholder="Search entire store here...">-->
+                                <!--                                            <button class="search-btn"></button>-->
+                                <!--                                        </div>-->
+                                <!--                                    </form>-->
+                                <!--                                </div>-->
+                            </li>
+
+                            <li class="account-icon">
+                                <!--                                <a href="#">-->
+                                <!--                                    <span></span>-->
+                                <!--                                </a>-->
+                                <!--                                <div class="header-link-dropdown account-link-dropdown">-->
+                                <!--                                    <ul class="link-dropdown-list">-->
+                                <!--                                        <li><span class="dropdown-title">Default welcome msg!</span>-->
+                                <!--                                            <ul>-->
+                                <!--                                                <li><a href="/user-login">Sign In</a></li>-->
+                                <!--                                                <li><a href="/user-signup">Create an Account</a></li>-->
+                                <!--                                            </ul>-->
+                                <!--                                        </li>-->
+
+                                <!--                                        <li><span class="dropdown-title">Language :</span>-->
+                                <!--                                            <ul>-->
+                                <!--                                                <li><a class="active" href="#">English</a></li>-->
+                                <!--                                                <li><a href="#">French</a></li>-->
+                                <!--                                                <li><a href="#">German</a></li>-->
+                                <!--                                            </ul>-->
+                                <!--                                        </li>-->
+                                <!--                                        <li><span class="dropdown-title">Currency :</span>-->
+                                <!--                                            <ul>-->
+                                <!--                                                <li><a class="active" href="#">USD</a></li>-->
+                                <!--                                                <li><a href="#">AUD</a></li>-->
+                                <!--                                                <li><a href="#">EUR</a></li>-->
+                                <!--                                            </ul>-->
+                                <!--                                        </li>-->
+
+                                <!--                                    </ul>-->
+                                <!--                                </div>-->
+                            </li>
+
+                            <li class="cart-icon">
+<!--                                <a href="/shopping-cart">-->
+<!--                                    <span>-->
+<!--                                        <small class="cart-notification total-cart"></small>-->
+<!--                                    </span>-->
+<!--                                </a>-->
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button data-target=".navbar-collapse"
+                            data-toggle="collapse" class="navbar-toggle"
+                            type="button">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+
+                <div class="col-md-6 col-sm-12 position-s left-side float-none-sm">
+                    <div class="align-center">
+                        <div id="menu" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="level"><a href="/admin-home" class="page-scroll">Home</a></li>
+
+                                <li class="level">
+                                    <span class="opener plus"></span>
+                                    <a class="page-scroll">
+                                        Manage
+                                    </a>
+                                    <div class="megamenu mobile-sub-menu">
+                                        <div class="megamenu-inner-top">
+                                            <ul class="sub-menu-level1">
+                                                <li class="level2">
+                                                    <ul class="sub-menu-level2 ">
+                                                        <li class="level3"><a href="/manage-category">Manage
+                                                                Category</a></li>
+                                                        <li class="level3"><a href="/manage-sub-category">Manage
+                                                                Sub-Category</a></li>
+                                                        <li class="level3"><a href="/manage-product">Manage Products</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="level">
+                                    <span class="opener plus"></span>
+                                    <a class="page-scroll">
+                                        Orders
+                                    </a>
+                                    <div class="megamenu mobile-sub-menu">
+                                        <div class="megamenu-inner-top">
+                                            <ul class="sub-menu-level1">
+                                                <li class="level2">
+                                                    <ul class="sub-menu-level2">
+                                                        <li class="level3"><a class="dropdown-item"
+                                                                              href="/admin/pending-orders">Pending
+                                                                Orders</a></li>
+                                                        <li class="level3"><a class="dropdown-item"
+                                                                              href="/admin/shipped-orders">Shipped
+                                                                Orders</a></li>
+                                                        <li class="level3"><a class="dropdown-item"
+                                                                              href="/admin/delivered-orders">Delivered
+                                                                Orders</a></li>
+                                                        <li class="level3"><a class="dropdown-item"
+                                                                              href="/admin/cancelled-order">Cancelled
+                                                                Orders</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="level">
+                                    <span class="opener plus"></span>
+                                    <a class="page-scroll">
+                                        Settings
+                                    </a>
+                                    <div class="megamenu mobile-sub-menu">
+                                        <div class="megamenu-inner-top">
+                                            <ul class="sub-menu-level1">
+                                                <li class="level2">
+                                                    <ul class="sub-menu-level2 ">
+                                                        <li class="level3">
+                                                            <a href="/admin-change-password">Change Password</a>
+                                                        </li>
+                                                        <li class="level3">
+                                                            <button type="button" onclick="LogoutAdmin()">
+                                                                Logout
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header_search_toggle mobile-view"></div>
+        </div>
+    </div>
+</header>
+<!-- HEADER END -->

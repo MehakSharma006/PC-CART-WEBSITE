@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Products..</title>
+    
+    <%- include('header-files-new') %>
+</head>
+<body class="hidden-bar-wrapper" onload="GetCartProducts()">
+
+<div class="page-wrapper">
+    <%- include('guest_navbar') %>
+
+    <%- include('bread-crumb') %>
+
+    <div class="container py-5">
+        <div>
+            <h2 class="text-info text-center">Your Products</h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Discount</th>
+                        <th>Quantity</th>
+                        <th>Net Price</th>
+                        <th>Remove</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="shoppingCart"></tbody>
+                </table>
+            </div>
+
+            <div class="mt-5" id="billDiv" hidden>
+                <h2>Billing Details</h2>
+                <hr>
+                <form id="checkoutOrderForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 margin-top-15">
+                            <label for="city">City <span class="text-danger">*</span></label>
+                            <select data-rule-required="true" name="city" id="city" class="form-control">
+                                <option value="">Please Select City</option>
+                                <option value="Amritsar">Amritsar</option>
+                                <option value="Jalandhar">Jalandhar</option>
+                                <option value="Ludhiana">Ludhiana</option>
+                                <option value="Agra">Agra</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3 margin-top-15">
+                            <label for="pincode">Enter Pincode <span class="text-danger">*</span></label>
+                            <input data-rule-required="true" type="text" class="form-control" id="pincode">
+                        </div>
+
+                        <div class="col-md-6 mb-3 margin-top-15">
+                            <label for="address">Enter Address <span class="text-danger">*</span></label>
+                            <textarea data-rule-required="true" name="address" id="address" class="form-control"></textarea>
+                        </div>
+
+                        <div class="col-md-6 mb-3 margin-top-15">
+                            <label for="remarks">Remarks <span class="text-muted">(Optional)</span></label>
+                            <textarea name="remarks" id="remarks" class="form-control"></textarea>
+                        </div>
+
+                        <div class="col-md-6 mb-3 margin-top-15">
+                            <label for="">Payment Mode</label> <br>
+                            <input checked type="radio" name="payment" id="COD" value="COD"> <label
+                                    for="COD">COD</label>
+                            <input type="radio" name="payment" id="Online" value="Online"> <label
+                                    for="Online">Online</label>
+                        </div>
+
+                        <div class="col-md-12 mb-3 margin-top-15">
+                            <button onclick="Check_Payment_Mode()" type="button" class="btn btn-primary">Pay Now
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-top-15"></div>
+
+    <%- include('footer') %>
+</div>
+
+<%- include("footer_scripts") %>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script> -->
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+
+<script>
+    const Check_Payment_Mode = () => {
+
+    if(document.getElementById("city").value === "" ) {
+        alert("Enter City");
+    } else if(document.getElementById("pincode").value === "") {
+        alert("Enter Pincode");
+    } else if(document.getElementById("address").value === "") {
+        alert("Enter Address");
+    } else {
+        if (document.getElementById("Online").checked) {
+            OnlinePayment();
+        } else {
+            PlaceOrder(null);
+        }
+     }
+    }
+
+    const OnlinePayment = () => {
+        let amount = document.getElementById("grandTotal").innerText;
+        // console.log(amount);
+
+        let options = {
+            "key": "rzp_test_dRWiKHS7zr2Gki",
+            "amount": amount * 100,
+            "name": "Online Watch Store",
+            "description": "Payment Gateway",
+            "image": "https://cdn3.vectorstock.com/i/1000x1000/98/22/logo-for-grocery-store-vector-21609822.jpg",
+            "handler": function (response) {
+                PlaceOrder(`"${response.razorpay_payment_id}"`);
+            },
+            "prefill": {
+                "name": "",
+                "email": ""
+            },
+            "notes": {
+                "address": ""
+            },
+            "theme": {
+                "color": "#942436"
+            }
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    var GetCartProducts = () => {
+        var formData = new FormData();
+        formData.append("action", "getproducts");
+
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // console.log(this.response);
+                // console.log(this.response.length);
+
+                // if (this.response.length <= 0) {
+                if (this.response === "") {
+                    document.getElementById("billDiv").hidden = true;
+                    document.getElementById("shoppingCart").innerHTML = "<tr><td colspan='7' class='text-danger'><h2 style='color: orangered; text-align: center'>Cart Empty</h2></td></tr>"
+                } else {
+                    document.getElementById("billDiv").hidden = false;
+                    // console.log(JSON.parse(this.response));
+
+                    var cart = JSON.parse(this.response);
+
+                    var tbodyHTML = ``;
+
+                    var grandTotal = 0;
+
+                    cart.forEach((value, index) => {
+                        // console.log(value);
+
+                        tbodyHTML += `<tr>`;
+                        tbodyHTML += `<td>${index + 1}</td>`;
+
+                        tbodyHTML += `<td>`;
+                        tbodyHTML += `<img src="${value.photo}" style="height: 60px !important;width: 60px !important;margin-right: 15px" alt="">`;
+                        tbodyHTML += `${value.product_name}`;
+                        tbodyHTML += `</td>`;
+
+                        tbodyHTML += `<td>&#x20b9;${value.price}</td>`;
+                        tbodyHTML += `<td>${value.discount}%</td>`;
+
+                        tbodyHTML += `<td>`;
+                        tbodyHTML += `<button onclick="UpdateQuantity('minus', ${value.id})" type="button" class="btn btn-sm btn-warning"><i class="fa fa-minus"></i></button>`;
+                        tbodyHTML += `<span style="font-size: 22px;margin:0 20px" class="mx-3">${value.quantity}</span>`;
+                        tbodyHTML += `<button onclick="UpdateQuantity('plus', ${value.id})" type="button" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i></button>`;
+                        tbodyHTML += `</td>`;
+
+                        grandTotal += value.discountPrice * value.quantity;
+
+                        tbodyHTML += `<td>&#x20b9;${value.quantity * value.discountPrice}</td>`;
+
+                        tbodyHTML += `<td>`;
+                        tbodyHTML += `<button onclick="RemoveProduct(${value.id})" type="button" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>`;
+                        tbodyHTML += `</td>`;
+
+                        tbodyHTML += `</tr>`;
+                    });
+
+                    tbodyHTML += `<tr>`;
+                    tbodyHTML += `<td colspan="5"></td>`;
+                    tbodyHTML += `<td>Grand Total : &#x20b9;<span id="grandTotal">${grandTotal}</span></td>`;
+                    tbodyHTML += `<td></td>`;
+                    tbodyHTML += `</tr>`;
+
+                    // tbodyHTML += `<tr>`;
+                    // tbodyHTML += `<td colspan="5"></td>`;
+                    // tbodyHTML += `<td>`;
+                    // tbodyHTML += `<a href="/check-user-session" class="btn btn-success">Proceed To Checkout</a>`;
+                    // tbodyHTML += `</td>`;
+                    // tbodyHTML += `</tr>`;
+
+                    document.getElementById("shoppingCart").innerHTML = tbodyHTML;
+
+                }
+            }
+        }
+        http.open("POST", "/add-to-cart", true);
+        http.send(formData);
+    }
+
+    var RemoveProduct = (pid) => {
+        if (confirm("Are you sure")) {
+            var formData = new FormData();
+            formData.append("action", "remove");
+            formData.append("pid", pid);
+            var http = new XMLHttpRequest();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // console.log(this.response);
+                    if (this.response === "removed") {
+                        GetCartProducts();
+                        getCartCount();
+                    }
+                }
+            }
+
+            http.open("POST", "/add-to-cart", true);
+            http.send(formData);
+        }
+    }
+
+    var UpdateQuantity = (action, pid) => {
+        // console.log(action, pid);
+        var formData = new FormData();
+        formData.append("action", action);
+        formData.append("pid", pid);
+
+
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // console.log(this.response);
+                if (this.response == "updated") {
+                    GetCartProducts();
+                }
+            }
+        }
+
+        http.open("POST", "/add-to-cart", true);
+        http.send(formData);
+    }
+
+    var PlaceOrder = (ref_id) => {
+        // console.log("ref_id -- ", ref_id)
+
+        var grandTotal = document.getElementById("grandTotal").innerText;
+        var city = document.getElementById("city").value;
+        var pincode = document.getElementById("pincode").value;
+        var address = document.getElementById("address").value;
+        var remarks = document.getElementById("remarks").value;
+        var payment_mode = document.getElementById("COD").value;
+
+        if (document.getElementById("Online").checked) {
+            payment_mode = document.getElementById("Online").value;
+        }
+
+        var formData = new FormData();
+        formData.append("grandTotal", grandTotal);
+        formData.append("city", city);
+        formData.append("pincode", pincode);
+        formData.append("address", address);
+        formData.append("remarks", remarks);
+        formData.append("payment_mode", payment_mode);
+        formData.append("ref_id", ref_id);
+
+        var http = new XMLHttpRequest();
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // console.log(this.response);
+                if (this.response == "success") {
+                    window.location.href = "/users/thank-you";
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Internal Server Error"
+                    });
+                }
+            }
+        }
+        http.open("POST", "/users/place-new-order", true);
+        http.send(formData);
+
+}
+</script>
+
+</body>
+</html>

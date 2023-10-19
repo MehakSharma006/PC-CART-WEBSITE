@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+    <%- include('../header-files-new') %>
+</head>
+<body class="hidden-bar-wrapper">
+
+<div class="page-wrapper">
+    <%- include("user_navbar") %>
+    <%- include("../bread-crumb") %>
+
+    <div class="container alert-info" style="margin-top: 30px;margin-bottom: 30px;background-color: rgb(194, 194, 216);">
+        <h2 style="text-align: center;background-color: rgb(194, 194, 216);">Welcome <span class="text-info"><%= username %></span></h2>
+
+        <h3 style="color:rgb(72, 72, 204)"><center>This is your User Dashboard , where you can:</center> </h3>
+       <ul style="color:rgb(72, 72, 204)"><center>
+        <li>See your orders</li><br>
+        <!-- <li>Proceed the payment procedure</li></center> -->
+        <br>
+       </ul>
+    </div>
+
+    <%- include('../footer') %>
+</div>
+
+<%- include("../footer_scripts") %>
+
+</body>
+</html>

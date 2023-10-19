@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>PCart-Customized Laptops/PC</title>
+    <%- include('header-files-new') %>
+</head>
+<body class="homepage">
+<div class="main">
+    <%- include('guest_navbar') %>
+
+    <!-- Banner Start -->
+    <div class="banner">
+        <div class="main-banner">
+            <div class="banner-1"><img src="assets/images/newpc.jpg" alt="PCart">
+            </div>
+
+        </div>
+    </div>
+    <!-- Banner End -->
+
+    <!--  New Products Block Start  -->
+    <section class="ptb-95 align-center" style="background-color:rgb(214, 205, 205)">
+        <div class="container">
+            <div class="product-slider" >
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="heading-part mb-40">
+                            <h1 class="main_title" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">New Products</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-0">
+                    <div class="product-main position-r">
+                        <div class="four-products" id="products-div">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="loadmore-products align-center mt-30">
+                <a href="/shop">
+                    <button class="btn btn-black big">See More Products</button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!--  New Products Block End  -->
+
+    <!--  Parallax Block Start  -->
+    <section class="ptb-95 parallax-block" data-stellar-background-ratio="0.5">
+        <div class="container service-feature-block">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <div class="ser-feature-block">
+                        <!-- <div class="feature-box feature1"> -->
+                            <div class="ser-title"></div>
+                            <div class="ser-subtitle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="ser-feature-block">
+                        <!-- <div class="feature-box feature2"> -->
+                            <div class="ser-title"></div>
+                            <div class="ser-subtitle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <div class="ser-feature-block">
+                        <!-- <div class="feature-box feature3"> -->
+                            <div class="ser-title"></div>
+                            <div class="ser-subtitle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--  Parallax Block End  -->
+
+
+</div>
+
+<!-- Brand logo block Start  -->
+<section class="pb-50 brand-main" style="background-color:rgb(214, 205, 205)">
+    <div class="container" >
+        <div class="row brand">
+            <div class="col-md-12">
+                <!-- <div id="brand-logo" class="owl-carousel align_center">
+                    <div class="item"><a href="#"><img src="assets/images/brand1.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand2.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand3.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand4.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand5.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand6.jpg" alt="#"></a></div>
+                    <div class="item"><a href="#"><img src="assets/images/brand7.jpg" alt="#"></a></div>
+                </div> -->
+                <br>
+                <br>
+                <h1 style="margin-left: 30px;">Thanks For Visiting</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Brand logo block End  -->
+
+<%- include('footer') %>
+<%- include('footer_scripts') %>
+
+<script>
+    $(document).ready(() => {
+        getCartProducts('index');
+    });
+</script>
+
+</body>
+</html>

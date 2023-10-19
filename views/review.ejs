@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reviews</title>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/dist/jquery.validate.js"></script>
+    <script>
+        function getvalues(){
+            $('#form1').validate();
+            if($('#form1').valid()){
+                var email = document.getElementById("email").value;
+               var username= document.getElementById("username").value;
+                var httpreq= new XMLHttpRequest();
+                httpreq.onreadystatechange = function (){
+                    if(this.readyState === 4 && this.status === 200){
+                        if(this.response === "Insert Successful"){
+                            document.getElementById("err").innerHTML="<div class='alert alert-success'>successfull</div>";
+                        }
+                    }
+                }
+                httpreq.open("get","/reviewaction?e="+email+"&p="+username+"&c="+reviews,true);
+                httpreq.send();
+            }
+        }
+    </script>
+    <style>
+        .error{color:red;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Customer Reviews</h1>
+    <form  id="form1" method="get">
+        <div class="mb-3">
+            <label for="username">Enter Username</label>
+            <input type="text" name="username" id="username" class="form-control" data-rule-required="true" data-msg-required="Username is required">
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Enter Email:</label>
+            <input type="email" name="email" id="email" class="form-control" data-rule-required="true" data-msg-required="Email is required">
+        </div>
+        <div class="mb-3">
+            <label for="views">Write Reviews:</label>
+            <input type="text" name="review" id="review" class="form-control" data-rule-required="true" data-msg-required="review is required">
+        </div>
+        
+        <!-- <div class="mb-3">
+            <label for="phno">Select product:</label>
+            <select name="product" id="product" class="form-control" data-rule-required="true">
+                <option value="">Select:</option>
+                <option>processor</option>
+                <option>SSD</option>
+            </select> -->
+        </div>
+
+
+        <div class="mb-3">
+            <input type="button" value="SUBMIT" onclick="getvalues()" class="btn btn-primary">
+            <div id="err"></div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>
